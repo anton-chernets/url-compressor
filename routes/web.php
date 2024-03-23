@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompressController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => '/'], function () {
+    Route::get('', function () {
+        return view('compress');}
+    );
+    Route::post('',  CompressController::class);
+
+    Route::get('/404', function () {
+        return view('404');}
+    );
 });
+
+Route::fallback(function () {})->middleware('check.compress');
