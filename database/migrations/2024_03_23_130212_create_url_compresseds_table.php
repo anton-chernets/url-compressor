@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('token', 8)
-                ->unique();
+                ->unique()
+                ->index();
             $table->unsignedInteger('available_count')
                 ->nullable();
             $table->dateTime('expired_at');

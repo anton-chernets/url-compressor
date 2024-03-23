@@ -9,7 +9,7 @@ class CreateCompressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required|unique:compress',
+            'url' => 'required|url',
             'hours' => 'required|min:0|max:24',
             'redirects' => 'required|min:0',
         ];

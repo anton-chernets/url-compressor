@@ -16,12 +16,14 @@ class CheckActionOnCompress
      * @param Request $request
      * @return Response
      */
-    #[NoReturn] public function handle(Request $request): Response
+    #[NoReturn] public function handle(Request $request): mixed
     {
         $action = $request->segment(1);
         /* @var Compress $compress */
         if ($compress = Compress::where('token', $action)->first()) {
-            if((new CompressService($compress))->isValidCompress()) {
+            $compressService = new CompressService($compress);
+            if($compressService->isValidCompress()) {
+                $compressService->decrAvailableCount();
                 return redirect($compress->url);
             }
             return redirect('/404');

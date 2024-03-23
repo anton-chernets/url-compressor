@@ -17,4 +17,9 @@ class CompressService extends BaseService
         return TimeHelper::checkOnExpire($this->compress->expired_at)
             && $this->compress->available_count !== 0;
     }
+
+    public function decrAvailableCount(): bool
+    {
+        return $this->compress->decrement('available_count', 1);
+    }
 }
