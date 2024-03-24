@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string $url
@@ -28,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Compress extends Model
 {
+    use HasFactory;
+
     protected $table = 'compress';
     protected $fillable = [
         'url',
