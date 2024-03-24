@@ -11,9 +11,13 @@ class CompressTest extends TestCase
 {
     use DatabaseTransactions;
 
-    /**
-     * A basic unit test example.
-     */
+    public function test_is_valid_compress(): void
+    {
+        $compress = Compress::factory()->create();
+        $compressService = new CompressService($compress);
+        $this->assertTrue($compressService->isValidCompress());
+    }
+
     public function test_decr_available_count(): void
     {
         $compress = Compress::factory()->create();
